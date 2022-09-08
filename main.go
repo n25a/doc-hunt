@@ -1,4 +1,4 @@
-package doc_hunt
+package main
 
 import "github.com/n25a/doc-hunt/cmd"
 

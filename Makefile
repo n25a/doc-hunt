@@ -7,8 +7,8 @@ check-goimport:
 	which goimports || GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
 
 format:
-	- find $(ROOT) -type f -name "*.go" -not -path "$(ROOT)/vendor/*" | xargs -n 1 -I R goimports -w R
-	- find $(ROOT) -type f -name "*.go" -not -path "$(ROOT)/vendor/*" | xargs -n 1 -I R gofmt -s
+	- find $(ROOT) -type f -name "*.go" -not -path "$(ROOT)/vendor/*" | xargs -I R -n 1 goimports -w R
+	- find $(ROOT) -type f -name "*.go" -not -path "$(ROOT)/vendor/*" | xargs -I R -n 1 gofmt -s
 
 vendor:
 	- go mod tidy

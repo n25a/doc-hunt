@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/n25a/doc-hunt/internal/alerts"
-	"github.com/n25a/doc-hunt/internal/hunter"
-	"github.com/n25a/doc-hunt/internal/parser"
+	"github.com/n25a/doc-hunt/internals/alerts"
+	"github.com/n25a/doc-hunt/internals/hunter"
+	"github.com/n25a/doc-hunt/internals/parser"
 	"github.com/spf13/cobra"
 )
 

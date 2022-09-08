@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/n25a/doc-hunt/internal/alerts"
+	"github.com/n25a/doc-hunt/internals/alerts"
 )
 
 func checkGodoc(paths []string) error {
@@ -24,10 +24,22 @@ func checkGodoc(paths []string) error {
 		constFind := false
 		structFind := false
 		varFind := false
+		anotherBracket := 0
 		for scanner.Scan() {
 			line := scanner.Text()
 			line = strings.TrimSpace(line)
 			lineCounter += 1
+
+			if strings.Contains(line, "{") {
+				anotherBracket++
+			}
+			if strings.Contains(line, "}") {
+				anotherBracket--
+			}
+
+			if funcFind && anotherBracket > 0 {
+				continue
+			}
 
 			if !funcFind && !constFind && !structFind && strings.Contains(line, "//") {
 				comments = append(comments, line)
@@ -43,7 +55,7 @@ func checkGodoc(paths []string) error {
 				}
 			}
 
-			if strings.Contains(line, "func") {
+			if strings.Contains(line, "func") && strings.Contains(line, "{") {
 				funcFind = true
 				if len(comments) == 0 {
 					alerts.AddReport(
@@ -54,7 +66,8 @@ func checkGodoc(paths []string) error {
 				}
 			}
 
-			if strings.Contains(line, "const") {
+			if !funcFind && strings.Contains(line, "const") && (strings.Contains(line, "(") ||
+				strings.Contains(line, "=")) {
 				if len(comments) == 0 {
 					alerts.AddReport(
 						path, lineCounter, line, "Constance without godoc comments",
@@ -68,7 +81,7 @@ func checkGodoc(paths []string) error {
 				}
 			}
 
-			if strings.Contains(line, "struct") {
+			if !funcFind && strings.Contains(line, "struct {") {
 				structFind = true
 				if len(comments) == 0 {
 					alerts.AddReport(
@@ -79,7 +92,8 @@ func checkGodoc(paths []string) error {
 				}
 			}
 
-			if strings.Contains(line, "var") {
+			if !funcFind && strings.Contains(line, "var ") && (strings.Contains(line, "(") ||
+				strings.Contains(line, "=")) {
 				if len(comments) == 0 {
 					alerts.AddReport(
 						path, lineCounter, line, "Global Variable without godoc comments",
@@ -92,7 +106,7 @@ func checkGodoc(paths []string) error {
 				}
 			}
 
-			if funcFind && strings.Contains(line, "}") {
+			if funcFind && anotherBracket == 0 && strings.Contains(line, "}") {
 				funcFind = false
 			}
 

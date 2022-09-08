@@ -31,9 +31,9 @@ func GetReports() {
 	}
 
 	for _, r := range R {
-		color.Yellow("Code: %s", r.code)
 		color.Yellow("Path: %s", r.path)
 		color.Yellow("Line: %d", r.line)
+		color.Yellow("Code: %s", r.code)
 		Warning.Printf("Message: %s\n", r.Message)
 		color.Blue("============================================")
 	}

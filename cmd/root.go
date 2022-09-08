@@ -8,7 +8,7 @@ import (
 )
 
 var rootCMD = &cobra.Command{
-	Use:   "crafting-table",
+	Use:   "doc-hunt",
 	Short: "A repository for repository based struct",
 }
 
@@ -21,5 +21,5 @@ func Execute() {
 }
 
 func init() {
-	rootCMD.AddCommand()
+	rootCMD.AddCommand(huntCMD)
 }

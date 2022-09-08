@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/n25a/doc-hunt/internal/alerts"
+	"github.com/n25a/doc-hunt/internals/alerts"
 )
 
 func Hunting(dir string, excludePath []string, excludeFile []string) error {
@@ -23,7 +23,7 @@ func Hunting(dir string, excludePath []string, excludeFile []string) error {
 		return nil
 	})
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	// remove files from excludeFile
