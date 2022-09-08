@@ -23,3 +23,13 @@ You can use these flags to execute doc-hunt files or directory.
 |:--------------:|:--------------------------:|
 | --exclude-path | Set directories to ignore  |
 | --exclude-file |    Set files to ignore     |
+
+
+## Reports
+Doc-Hunt print a report in terminal.
+
+If your code have some problems, it will print a report like this:
+![alt text]()
+
+If your code have no problems, it will print a report like this:
+![alt text]()

@@ -1,7 +1,9 @@
+// Package parser used for parse input parameter
 package parser
 
 import "strings"
 
+// ExportData used for export data from string to array of string
 func ExportData(str string) []string {
 	for strings.Contains(str, "  ") {
 		str = strings.ReplaceAll(str, " ", "") // remove spaces
