@@ -28,7 +28,7 @@ func init() {
 func hunt(_ *cobra.Command, _ []string) {
 	if dir == "" {
 		_, _ = alerts.Error.Println("Error: dir is not set")
-		panic()
+		panic("Error: dir is not set")
 	}
 
 	var newExcludePath []string
