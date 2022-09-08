@@ -51,7 +51,7 @@ func Hunting(dir string, excludePath []string, excludeFile []string) error {
 	paths = tmp
 
 	// check godoc for each file
-	err := checkGodoc(paths)
+	err = checkGodoc(paths)
 	if err != nil {
 		return err
 	}

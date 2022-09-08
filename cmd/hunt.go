@@ -43,6 +43,6 @@ func hunt(_ *cobra.Command, _ []string) {
 	err := hunter.Hunting(dir, newExcludePath, newExcludeFile)
 	if err != nil {
 		_, _ = alerts.Error.Println(err)
-		panic()
+		panic(err)
 	}
 }
