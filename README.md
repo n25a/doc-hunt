@@ -13,7 +13,7 @@ $ go get github.com/n25a/doc-hunt
 Then, you can run it by following command.
 
 ```bash
-$ doc-hunt -dir "/path/to/project"
+$ doc-hunt hunt -dir "/path/to/project"
 ```
 
 ## Options

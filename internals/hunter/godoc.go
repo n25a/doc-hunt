@@ -17,14 +17,16 @@ func checkGodoc(paths []string) error {
 
 		scanner := bufio.NewScanner(f)
 
-		comments := []string{}
-		lineCounter := 0
+		var (
+			comments       = []string{}
+			lineCounter    = 0
+			funcFind       = false
+			constFind      = false
+			structFind     = false
+			varFind        = false
+			anotherBracket = 0
+		)
 
-		funcFind := false
-		constFind := false
-		structFind := false
-		varFind := false
-		anotherBracket := 0
 		for scanner.Scan() {
 			line := scanner.Text()
 			line = strings.TrimSpace(line)
