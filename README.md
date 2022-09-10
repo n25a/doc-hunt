@@ -7,13 +7,13 @@ Doc-Hunt is godoc checker in project.
 You can install it by following command.
 
 ```bash
-$ go get github.com/n25a/doc-hunt
+go get github.com/n25a/doc-hunt
 ```
 
 Then, you can run it by following command.
 
 ```bash
-$ doc-hunt hunt --dir "/path/to/project"
+doc-hunt hunt --dir "/path/to/project"
 ```
 
 ## Options
